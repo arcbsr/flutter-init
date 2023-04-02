@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:insurance_flutter/Screens/LoginScreen.dart';
 import 'package:insurance_flutter/Screens/UI/CustomText.dart';
 import 'package:sizer/sizer.dart';
+import 'LoginForm.dart';
+import 'SignUpScreen.dart';
 import 'listitem/MyList.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   final List<Widget> pages = [
     LoginPage(isShowAppBar: false),
-    ListPage(),
-    ListPage(),
+    const CreateAccount(),
+    LoginForm(),
     ListPage(),
   ];
 
