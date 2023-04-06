@@ -39,11 +39,17 @@ dependencies:
   firebase_core: ^2.9.0
   firebase_database: ^10.1.0
   firebase_auth: ^4.4.0
+  flutter_screenutil: ^5.7.0
+  flutter_riverpod: ^2.3.2
+  carousel_slider: ^4.2.1
+  dots_indicator: ^2.1.0
+  freezed_annotation: ^2.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  sizer: ^2.0.15
+  build_runner: ^2.1.11
+  freezed: ^2.0.3+1
 #  device_preview: ^1.1.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

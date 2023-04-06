@@ -13,8 +13,8 @@ class LoginPage extends StatelessWidget {
         padding: EdgeInsets.all(0),
         child: Center(
           child: SizedBox(
-            height: 50.h,
-            width: 80.w,
+            height: 100.h,
+            width: 70.w,
             child: FractionallySizedBox(
               widthFactor: 1,
               child: Column(
@@ -36,10 +36,10 @@ class LoginPage extends StatelessWidget {
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(50.w, 12.w),
+                      minimumSize: Size(150, 40),
                     ),
                     onPressed: () {},
                     child: Text("Login"),

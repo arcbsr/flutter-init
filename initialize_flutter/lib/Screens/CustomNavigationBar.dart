@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:insurance_flutter/Screens/LoginScreen.dart';
-import 'package:insurance_flutter/Screens/UI/CustomText.dart';
+import 'package:insurance_flutter/Screens/UI/HomePage.dart';
 import 'package:sizer/sizer.dart';
-import 'LoginForm.dart';
-import 'SignUpScreen.dart';
-import 'listitem/MyList.dart';
+import 'app_theme.dart';
 
 class CustomNavigationBar extends StatefulWidget {
   final List<Widget> pages = [
-    LoginPage(isShowAppBar: false),
-    const CreateAccount(),
-    LoginForm(),
-    ListPage(),
+    const HomePage(),
+    // const CreateAccount(),
+    // LoginForm(),
+    // ListPage(),
+    const HomePage(),
+    const HomePage(),
+    const HomePage(),
+    const HomePage(),
   ];
+
+  CustomNavigationBar({super.key});
 
   // CustomNavigationBar({required this.pages});
   @override
   _CustomNavigationBarState createState() => _CustomNavigationBarState();
-  
 }
-class _AppBar extends StatelessWidget{
+
+class _AppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-
-      padding: const EdgeInsets.fromLTRB(0,20.0,0,0),
+      padding: const EdgeInsets.fromLTRB(0, 25.0, 0, 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -32,49 +35,49 @@ class _AppBar extends StatelessWidget{
           // backgroundImage: NetworkImage('https://wallpapers.com/images/hd/cool-profile-picture-ld8f4n1qemczkrig.jpg'),
           const SizedBox(width: 10),
           CircleAvatar(
-            backgroundImage: NetworkImage('https://wallpapers.com/images/hd/cool-profile-picture-ld8f4n1qemczkrig.jpg'),
-            radius: 5.w,
+            backgroundImage: const NetworkImage(
+                // 'https://wallpapers.com/images/hd/cool-profile-picture-ld8f4n1qemczkrig.jpg'
+                'https://s3-media0.fl.yelpcdn.com/bphoto/aVf9ZKyRSzYdV5jNtuirFQ/348s.jpg'),
+            radius: 5.w, //ScreenUtil().radius(25),
           ),
-          const SizedBox(width: 15),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 3),
-                TextN(text: "Good Morning"),
-                const SizedBox(height: 3),
-                TitleB(text: "Hello! Guest")
+              children: const [
+                SizedBox(height: 3),
+                Text(
+                  "Good Morning",
+                  style: AppTheme.subtitle,
+                ),
+                SizedBox(height: 3),
+                Text(
+                  "Hello! Guest",
+                  style: AppTheme.title,
+                )
               ],
             ),
-          ),// Add some spacing between the two pieces of text
-          Container(
-            width: 40.w,
+          ), // Add some spacing between the two pieces of text
+          SizedBox(
+            //ScreenUtil().setWidth(100),
             child: Flex(
               direction: Axis.horizontal,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    print('Button pressed!');
-                  },
-                ),
                 // const SizedBox(width: 5),
                 IconButton(
-                  icon: Icon(Icons.qr_code),
+                  icon: const Icon(Icons.qr_code),
                   onPressed: () {
                     print('Button pressed!');
                   },
                 ),
-                // SizedBox(width: 5),
                 IconButton(
-                  icon: Icon(Icons.notification_important),
+                  icon: const Icon(Icons.notification_important),
                   onPressed: () {
                     print('Button pressed!');
                   },
                 ),
-
               ],
             ),
           )
@@ -82,16 +85,16 @@ class _AppBar extends StatelessWidget{
       ),
     );
   }
-
 }
+
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
   int _selectedIndex = 0;
   double _buttonSize = 24.0;
   void _onItemTapped(int index) {
-    if(index == 3){
+    if (index == 3) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage(isShowAppBar: true)),
+        MaterialPageRoute(builder: (context) => LoginPage(isShowAppBar: false)),
       );
     }
     setState(() {
@@ -100,48 +103,47 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   title: _AppBar(),
-      //   automaticallyImplyLeading: false,
-      //   titleSpacing: 10.0,
-      //   centerTitle: false,
-      // ),
-      body:  Column(
+      resizeToAvoidBottomInset: false,
+      body: Column(
         children: [
-          Container(height:15.h,child: _AppBar()),
+          //ScreenUtil().setHeight(80)
+          Container(height: 16.h, child: _AppBar()),
           Expanded(child: widget.pages[_selectedIndex]),
         ],
       ),
       bottomNavigationBar: SizedBox(
-        height: 10.h,
+        height: 8.h, //ScreenUtil().setHeight(60),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: "Home",
               backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: "Search",
+              icon: Icon(Icons.my_library_books_outlined),
+              label: "Booking",
               backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: "Settings",
+              icon: Icon(Icons.calendar_month_outlined),
+              label: "Calendar",
               backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Profile",
+              icon: Icon(Icons.inbox_outlined),
+              label: "Inbox",
+              backgroundColor: Colors.blue,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.menu),
+              label: "Menu",
               backgroundColor: Colors.blue,
             ),
           ],
