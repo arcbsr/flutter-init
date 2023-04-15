@@ -1,11 +1,8 @@
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 // import 'package:device_preview/device_preview.dart';
 import 'Screens/CustomNavigationBar.dart';
 import 'package:flutter/services.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -20,15 +17,15 @@ void main() async {
   //   'message': 'Hello, world!'
   // });
   runApp(const MyApp());
-
 }
+
 // void main() => runApp(
 //   DevicePreview(
 //     enabled: true,
 //     builder: (context)=> const MyApp(),
 //   ),
 // );
-final MaterialColor myWhite = MaterialColor(
+const MaterialColor myWhite = MaterialColor(
   0xFFFFFFFF, // base color is white (0xFFFFFFFF)
   <int, Color>{
     50: Color(0xFFFFFFFF),
@@ -43,7 +40,7 @@ final MaterialColor myWhite = MaterialColor(
     900: Color(0xFFFFFFFF),
   },
 );
-MaterialColor primaryColor = MaterialColor(
+MaterialColor primaryColor = const MaterialColor(
   0xFF7A6EFE,
   <int, Color>{
     50: Color(0xFF7A6EFE),
@@ -60,20 +57,21 @@ MaterialColor primaryColor = MaterialColor(
 );
 final ThemeData myTheme = ThemeData(
   primarySwatch: primaryColor,
-  backgroundColor: myWhite,// your primary color
-  appBarTheme: AppBarTheme(
+  backgroundColor: myWhite, // your primary color
+  appBarTheme: const AppBarTheme(
     iconTheme: IconThemeData(
       color: Colors.black, // set icon color here
     ),
   ),
 );
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // set the status bar color to white
       statusBarIconBrightness: Brightness.dark, // set the text color to black
     ));
@@ -88,7 +86,6 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
-
   }
 }
 
@@ -103,53 +100,49 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'My App',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home:  Scaffold(
-            // appBar: AppBar(
-            //
-            //   title: Row(
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       CircleAvatar(
-            //         backgroundImage: AssetImage('assets/images/profile.jpg'),
-            //         radius: 20.0,
-            //       ),
-            //       SizedBox(width: 8),
-            //       Column(
-            //         crossAxisAlignment: CrossAxisAlignment.start,
-            //         children: [
-            //         Text(
-            //         'Sizer',style: TextStyle(fontSize: 15),
-            //       ),
-            //           Text(
-            //             'Sizer',style: TextStyle(fontSize: 15),
-            //           ),
-            //         ],
-            //       ),// Add some spacing between the two pieces of text
-            //     ],
-            //   ),
-            //   automaticallyImplyLeading: false,
-            //   titleSpacing: 10.0,
-            //   centerTitle: false,
-            // ),
-            backgroundColor: Colors.yellow,
-            body: CustomNavigationBar(),
-
-          ),
-          builder: (context, child) => Sizer(
-            builder: (context, orientation, deviceType) {
-              return child!;
-            },
-          ),
-        );
-
-
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'My App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        // appBar: AppBar(
+        //
+        //   title: Row(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     children: [
+        //       CircleAvatar(
+        //         backgroundImage: AssetImage('assets/images/profile.jpg'),
+        //         radius: 20.0,
+        //       ),
+        //       SizedBox(width: 8),
+        //       Column(
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         children: [
+        //         Text(
+        //         'Sizer',style: TextStyle(fontSize: 15),
+        //       ),
+        //           Text(
+        //             'Sizer',style: TextStyle(fontSize: 15),
+        //           ),
+        //         ],
+        //       ),// Add some spacing between the two pieces of text
+        //     ],
+        //   ),
+        //   automaticallyImplyLeading: false,
+        //   titleSpacing: 10.0,
+        //   centerTitle: false,
+        // ),
+        backgroundColor: Colors.yellow,
+        body: CustomNavigationBar(),
+      ),
+      builder: (context, child) => Sizer(
+        builder: (context, orientation, deviceType) {
+          return child!;
+        },
+      ),
+    );
   }
 }

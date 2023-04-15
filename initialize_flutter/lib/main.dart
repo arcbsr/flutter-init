@@ -8,25 +8,28 @@ import 'package:sizer/sizer.dart';
 import 'Screens/CustomNavigationBar.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'Screens/app_theme.dart';
+import 'firebase_options.dart';
 
 void main() async {
   // return runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
-  if (kIsWeb) {
-    // run web-specific code
-    await Firebase.initializeApp(
-        options: const FirebaseOptions(
-            apiKey: 'AIzaSyALzp1XP5T41OzUw3S1hzHeNv1rl72z-e0"',
-            appId: '1:720406346710:web:284597d0d5174b5a110277',
-            messagingSenderId: '720406346710',
-            databaseURL:
-                'https://flutterdbapp-5f476-default-rtdb.firebaseio.com',
-            projectId: 'flutterdbapp-5f476'));
-  } else {
-    // run mobile-specific code
-    await Firebase.initializeApp();
-  }
-
+  // if (kIsWeb) {
+  //   // run web-specific code
+  //   await Firebase.initializeApp(
+  //       options: const FirebaseOptions(
+  //           apiKey: 'AIzaSyALzp1XP5T41OzUw3S1hzHeNv1rl72z-e0"',
+  //           appId: '1:720406346710:web:284597d0d5174b5a110277',
+  //           messagingSenderId: '720406346710',
+  //           databaseURL:
+  //               'https://flutterdbapp-5f476-default-rtdb.firebaseio.com',
+  //           projectId: 'flutterdbapp-5f476'));
+  // } else {
+  //   // run mobile-specific code
+  //   await Firebase.initializeApp();
+  // }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 // Ideal time to initialize
 //   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(const ProviderScope(

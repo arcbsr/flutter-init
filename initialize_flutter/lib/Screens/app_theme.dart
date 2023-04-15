@@ -48,22 +48,42 @@ class AppTheme {
     letterSpacing: 0.27,
     color: darkerText,
   );
-
+  static const TextStyle btntitle = TextStyle(
+    // h6 -> title
+    fontFamily: fontName,
+    fontSize: 16,
+    letterSpacing: 0.18,
+  );
+  static const TextStyle title12 = TextStyle(
+    // h6 -> title
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 12,
+    letterSpacing: 1,
+    color: Colors.black,
+  );
   static const TextStyle title = TextStyle(
     // h6 -> title
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
-    fontSize: 16,
+    fontSize: 14,
     letterSpacing: 0.18,
     color: darkerText,
+  );
+  static const TextStyle discount = TextStyle(
+    // h6 -> title
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 10,
+    color: Colors.black,
   );
   static const TextStyle titlePrice = TextStyle(
     // h6 -> title
     fontFamily: fontName,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w400,
     fontSize: 16,
-    letterSpacing: 1,
-    color: pricePurpleText,
+    letterSpacing: .3,
+    color: Colors.orange,
   );
   static const TextStyle subtitle = TextStyle(
     // subtitle2 -> subtitle
@@ -82,7 +102,14 @@ class AppTheme {
     letterSpacing: 0.2,
     color: darkText,
   );
-
+  static const TextStyle nodata = TextStyle(
+    // body1 -> body2
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
+    letterSpacing: 0.5,
+    color: Colors.orange,
+  );
   static const TextStyle body1 = TextStyle(
     // body2 -> body1
     fontFamily: fontName,

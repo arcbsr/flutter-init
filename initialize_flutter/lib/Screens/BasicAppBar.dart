@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
-  BasicAppBar({required this.title});
+  const BasicAppBar({super.key, required this.title});
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title,style: TextStyle(
-        color: Colors.black, // Set the color of the title text to white
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.black, // Set the color of the title text to white
         ),
       ),
-
 
       backgroundColor: Colors.white,
       // leading: IconButton(
@@ -26,23 +27,24 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
       // ),
       actions: [
         IconButton(
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
           onPressed: () {
             // Do something
           },
-        ),IconButton(
-          icon: Icon(Icons.qr_code),
+        ),
+        IconButton(
+          icon: const Icon(Icons.qr_code),
           onPressed: () {
             // Do something
           },
-        ),IconButton(
-          icon: Icon(Icons.notification_important),
+        ),
+        IconButton(
+          icon: const Icon(Icons.notification_important),
           onPressed: () {
             // Do something
           },
         ),
       ],
-
     );
   }
 }

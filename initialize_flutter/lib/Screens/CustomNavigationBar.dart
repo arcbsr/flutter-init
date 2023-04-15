@@ -69,13 +69,13 @@ class _AppBar extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.qr_code),
                   onPressed: () {
-                    print('Button pressed!');
+                    //print('Button pressed!');
                   },
                 ),
                 IconButton(
                   icon: const Icon(Icons.notification_important),
                   onPressed: () {
-                    print('Button pressed!');
+                    //print('Button pressed!');
                   },
                 ),
               ],
@@ -110,12 +110,12 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       body: Column(
         children: [
           //ScreenUtil().setHeight(80)
-          Container(height: 16.h, child: _AppBar()),
+          SizedBox(height: 16.h, child: _AppBar()),
           Expanded(child: widget.pages[_selectedIndex]),
         ],
       ),
       bottomNavigationBar: SizedBox(
-        height: 8.h, //ScreenUtil().setHeight(60),
+        height: 12.h, //ScreenUtil().setHeight(60),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,

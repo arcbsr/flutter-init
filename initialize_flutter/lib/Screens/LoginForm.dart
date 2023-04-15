@@ -37,7 +37,7 @@ class _LoginFormState extends State<LoginForm> {
             // focusNode: _focusEmail,
             //validator: (value) => Validator.validateEmail(email: value),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           TextFormField(
             controller: _passwordTextController,
             // focusNode: _focusPassword,
@@ -68,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
                       }
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     'Sign In',
                     style: TextStyle(color: Colors.white),
                   ),
@@ -81,7 +81,7 @@ class _LoginFormState extends State<LoginForm> {
                     //   MaterialPageRoute(builder: (context) => RegisterPage()),
                     // );
                   },
-                  child: Text(
+                  child: const Text(
                     'Register',
                     style: TextStyle(color: Colors.white),
                   ),

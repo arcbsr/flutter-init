@@ -3,14 +3,14 @@ import 'package:insurance_flutter/Screens/BasicAppBar.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatelessWidget {
-  bool isShowAppBar= false;
-  LoginPage({required this.isShowAppBar});
+  bool isShowAppBar = false;
+  LoginPage({super.key, required this.isShowAppBar});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: !isShowAppBar?null:BasicAppBar(title: "Login"),
+      appBar: !isShowAppBar ? null : const BasicAppBar(title: "Login"),
       body: Padding(
-        padding: EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         child: Center(
           child: SizedBox(
             height: 100.h,
@@ -21,28 +21,28 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Email",
                       hintText: "Enter your email",
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   TextFormField(
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Password",
                       hintText: "Enter your password",
                       border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(150, 40),
+                      minimumSize: const Size(150, 40),
                     ),
                     onPressed: () {},
-                    child: Text("Login"),
+                    child: const Text("Login"),
                   ),
                 ],
               ),

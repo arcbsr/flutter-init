@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:insurance_flutter/Models/OffersHome.dart';
@@ -7,7 +8,9 @@ import 'package:insurance_flutter/providers/data_provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Models/databese/Product.dart';
+import '../../Models/databese/product/product_insertui.dart';
 import '../../providers/product_provider.dart';
+import '../app_theme.dart';
 import '../listitem/CardItems.dart';
 import 'HomeOffers.dart';
 
@@ -125,7 +128,9 @@ class _HomePageState extends State<HomePage> {
           List<Product> products = watch.watch(dataProvider).products;
           bool isLoading = watch.watch(dataProvider).isLoading;
           return isLoading
-              ? const Center(child: CircularProgressIndicator())
+              ? const Center(
+            child: CupertinoActivityIndicator(),
+          )
               : OfferSection(watch, isLoading, offerItems, products);
         }),
       ),
@@ -134,131 +139,101 @@ class _HomePageState extends State<HomePage> {
 
   Widget OfferSection(WidgetRef watch, bool isLoading,
       final List<OffersHome> offerItemss, List<Product> products) {
-    return Expanded(
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 90.w,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: TextField(
-                  controller: _searchController,
-                  decoration: const InputDecoration(
-                    hintText: 'Search',
-                    border: InputBorder.none,
-                    prefixIcon: Icon(Icons.search),
-                  ),
-                  onSubmitted: (String value) {
-                    // Perform action when 'done' key is pressed
-                    // _changeText();
-                  },
-                ),
-              ),
-            ],
-          ),
-
-          // isLoading ? CircularProgressIndicator() : Text("Done..."),
-
-          ElevatedButton(
-            onPressed: () async {
-              await watch.read(dataProvider.notifier).addReview();
-              // await watch.read(dataProvider.notifier).addProduct(product);
-            },
-            child: Text("Insert"),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              Product product = Product(
-                id: 'asdasdsa',
-                description: 'I am description',
-                imageurl:
-                    "https://s3-media0.fl.yelpcdn.com/bphoto/aVf9ZKyRSzYdV5jNtuirFQ/348s.jpg",
-                name: 'Home Clean',
-                price: 25.0,
-                userId: 'GfKtzTg09BTo2qdJ76CgvQfqqFD2',
-              );
-              await watch.read(dataProvider.notifier).addProduct(product);
-            },
-            child: const Text("Add Product"),
-          ),
-          const SizedBox(height: 10.0),
-          SizedBox(
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
               width: 90.w,
-              height: 20.h,
-              child: HomeOffers(offerItems: offerItemss)),
-          const SizedBox(height: 15.0),
-          SizedBox(width: 90.w, height: 25.h, child: const HomeCategory()),
-
-          // ListView.builder(
-          //   padding: EdgeInsets.zero,
-          //   shrinkWrap: true,
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   itemCount: items.length,
-          //   itemBuilder: (BuildContext context, int index) {
-          //     ServiceItem ss = ServiceItem(
-          //         "Shaerly Cloud",
-          //         "House Cleaning",
-          //         "https://s3-media0.fl.yelpcdn.com/bphoto/aVf9ZKyRSzYdV5jNtuirFQ/348s.jpg",
-          //         4.2,
-          //         1000,
-          //         "Cleaning",
-          //         100);
-          //     return CardItems(
-          //       serviceItem: ss,
-          //     );
-          //   },
-          // )
-          // Consumer(builder: (context, watch, child) {
-          //   return
-          SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: GridView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: products.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount:
-                      ScreentUtils.isLargeScreen(context, 900) ? 2 : 1,
-                  // (MediaQuery.of(context).size.width ~/ 200).clamp(1, 3),
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 0,
-                  childAspectRatio:
-                      ScreentUtils.isLargeScreen(context, 900) ? 4 : 3,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1.0,
                 ),
-                itemBuilder: (BuildContext context, int index) {
-                  ServiceItem ss = ServiceItem(
-                      "Shaerly Cloud",
-                      "House Cleaning",
-                      "https://s3-media0.fl.yelpcdn.com/bphoto/aVf9ZKyRSzYdV5jNtuirFQ/348s.jpg",
-                      4.2,
-                      1000,
-                      "Cleaning",
-                      100);
-                  return SizedBox(
-                    height: 100,
-                    child: CardItems(
-                      serviceItem: products[index],
-                    ),
-                  );
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: TextField(
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  hintText: 'Search',
+                  border: InputBorder.none,
+                  prefixIcon: Icon(Icons.search),
+                ),
+                onSubmitted: (String value) {
+                  // Perform action when 'done' key is pressed
+                  // _changeText();
                 },
               ),
             ),
+          ],
+        ),
+
+        // isLoading ? CircularProgressIndicator() : Text("Done..."),
+
+        // ElevatedButton(
+        //   onPressed: () async {
+        //     // await watch.read(dataProvider.notifier).addReview();
+        //     // await watch.read(dataProvider.notifier).addProduct(product);
+        //     Navigator.push(
+        //         context,
+        //         MaterialPageRoute(
+        //           builder: (context) => InsertForm(
+        //             subcatid: '',
+        //           ),
+        //         ));
+        //   },
+        //   child: const Text("Insert"),
+        // ),
+        // ElevatedButton(
+        //   onPressed: () async {
+        //     Product product = Product(
+        //       id: 'asdasdsa',
+        //       description: 'I am description',
+        //       imageurl:
+        //           "https://s3-media0.fl.yelpcdn.com/bphoto/aVf9ZKyRSzYdV5jNtuirFQ/348s.jpg",
+        //       name: 'Home Clean',
+        //       price: 25.0,
+        //       userId: 'GfKtzTg09BTo2qdJ76CgvQfqqFD2',
+        //     );
+        //     await watch.read(dataProvider.notifier).addProduct(product);
+        //   },
+        //   child: const Text("Add Product"),
+        // ),
+        const SizedBox(height: 10.0),
+        SizedBox(
+            width: 90.w,
+            height: 20.h,
+            child: HomeOffers(offerItems: offerItemss)),
+        const SizedBox(height: 15.0),
+        SizedBox(width: 90.w, height: 35.h, child: const HomeCategory()),
+
+        SingleChildScrollView(
+          child: GridView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: products.length,
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: ScreentUtils.isLargeScreen(context, 900) ? 3 : 1,
+              // (MediaQuery.of(context).size.width ~/ 200).clamp(1, 3),
+              mainAxisSpacing: 0,
+              crossAxisSpacing: 0,
+              childAspectRatio:
+                  ScreentUtils.isLargeScreen(context, 900) ? 3 : 3,
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 100,
+                child: CardItems(
+                  serviceItem: products[index],
+                ),
+              );
+            },
           ),
-          //   ;
-          // }),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
