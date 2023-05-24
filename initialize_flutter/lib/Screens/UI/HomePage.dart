@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:insurance_flutter/Models/OffersHome.dart';
+import 'package:insurance_flutter/Models/databese/Category.dart';
 import 'package:insurance_flutter/Screens/UI/HomeCategory.dart';
+import 'package:insurance_flutter/Screens/UI/ProductsDataList.dart';
 import 'package:insurance_flutter/Utils/ScreenUtils.dart';
 import 'package:insurance_flutter/providers/data_provider.dart';
 import 'package:sizer/sizer.dart';
@@ -33,24 +35,6 @@ class CounterIndicator extends ChangeNotifier {
 
 class _HomePageState extends State<HomePage> {
   bool isInsertAction = false;
-  final List<String> items = [
-    'Apple',
-    'Banana',
-    'Orange',
-    'Mango',
-    'Apple',
-    'Banana',
-    'Orange',
-    'Mango',
-    'Apple',
-    'Banana',
-    'Orange',
-    'Mango',
-    'Apple',
-    'Banana',
-    'Orange',
-    'Mango'
-  ];
 
   final TextEditingController _searchController = TextEditingController();
   String _searchText = '';
@@ -129,8 +113,8 @@ class _HomePageState extends State<HomePage> {
           bool isLoading = watch.watch(dataProvider).isLoading;
           return isLoading
               ? const Center(
-            child: CupertinoActivityIndicator(),
-          )
+                  child: CupertinoActivityIndicator(),
+                )
               : OfferSection(watch, isLoading, offerItems, products);
         }),
       ),
@@ -141,33 +125,33 @@ class _HomePageState extends State<HomePage> {
       final List<OffersHome> offerItemss, List<Product> products) {
     return Column(
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 90.w,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: TextField(
-                controller: _searchController,
-                decoration: const InputDecoration(
-                  hintText: 'Search',
-                  border: InputBorder.none,
-                  prefixIcon: Icon(Icons.search),
-                ),
-                onSubmitted: (String value) {
-                  // Perform action when 'done' key is pressed
-                  // _changeText();
-                },
-              ),
-            ),
-          ],
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Container(
+        //       width: 90.w,
+        //       decoration: BoxDecoration(
+        //         border: Border.all(
+        //           color: Colors.grey,
+        //           width: 1.0,
+        //         ),
+        //         borderRadius: BorderRadius.circular(8.0),
+        //       ),
+        //       child: TextField(
+        //         controller: _searchController,
+        //         decoration: const InputDecoration(
+        //           hintText: 'Search',
+        //           border: InputBorder.none,
+        //           prefixIcon: Icon(Icons.search),
+        //         ),
+        //         onSubmitted: (String value) {
+        //           // Perform action when 'done' key is pressed
+        //           // _changeText();
+        //         },
+        //       ),
+        //     ),
+        //   ],
+        // ),
 
         // isLoading ? CircularProgressIndicator() : Text("Done..."),
 
@@ -202,8 +186,8 @@ class _HomePageState extends State<HomePage> {
         // ),
         const SizedBox(height: 10.0),
         SizedBox(
-            width: 90.w,
-            height: 20.h,
+            width: ScreentUtils.isMobileDevice ? 90.w : 50.w,
+            height: 30.h,
             child: HomeOffers(offerItems: offerItemss)),
         const SizedBox(height: 15.0),
         SizedBox(width: 90.w, height: 35.h, child: const HomeCategory()),
@@ -226,7 +210,7 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (BuildContext context, int index) {
               return SizedBox(
                 height: 100,
-                child: CardItems(
+                child: OfferItemUI(
                   serviceItem: products[index],
                 ),
               );

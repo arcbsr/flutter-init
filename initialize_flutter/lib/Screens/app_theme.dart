@@ -110,6 +110,14 @@ class AppTheme {
     letterSpacing: 0.5,
     color: Colors.orange,
   );
+  static const TextStyle error = TextStyle(
+    // body1 -> body2
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
+    letterSpacing: 0.5,
+    color: Colors.red,
+  );
   static const TextStyle body1 = TextStyle(
     // body2 -> body1
     fontFamily: fontName,
